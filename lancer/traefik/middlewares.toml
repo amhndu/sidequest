@@ -1,0 +1,10 @@
+[http.middlewares]
+  [http.middlewares.myauth.basicAuth]
+    usersFile = "/traefik/htpasswd"
+    removeHeader = true
+
+
+  [http.middlewares.mydigestauth.digestAuth]
+    usersFile = "/traefik/htdigest.txt"
+    removeHeader = true
+

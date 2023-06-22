@@ -1,0 +1,33 @@
+version: '3.5'
+
+services:
+  joplin:
+    image: florider89/joplin-server:2.11.1
+    container_name: joplin
+    volumes:
+      # needs to be chown 1001:1001 for joplin user
+      - /home/amish/db/joplin/:/storage/
+    restart: 'unless-stopped'
+    environment:
+      - SQLITE_DATABASE=/storage/db.sqlite
+      - STORAGE_DRIVER=Type=Filesystem; Path=/storage/notes
+      - APP_PORT=8080
+      - APP_BASE_URL=https://joplin.lancer.sidequest.space
+    networks:
+      - "traefik_proxy"
+    expose:
+      - 8080
+    labels:
+      # Enable traefik
+      traefik.enable: true
+      traefik.port: 8080
+      traefik.http.routers.joplin.rule: Host(`joplin.lancer.sidequest.space`)
+      traefik.http.routers.joplin.entrypoints: websecure
+      traefik.http.routers.joplin.tls: true
+      traefik.http.routers.joplin.tls.certResolver: myresolver
+
+
+
+networks:
+  traefik_proxy:
+    external: true

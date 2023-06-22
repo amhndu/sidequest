@@ -1,0 +1,32 @@
+version: "3.9"
+services:
+  traefik:
+    image: "traefik:v2.10"
+    container_name: "traefik"
+    networks:
+      - "proxy"
+    environment:
+      - TRAEFIK_CERTIFICATESRESOLVERS_myresolver_ACME_EMAIL
+      - CF_DNS_API_TOKEN
+    ports:
+      - "443:443"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - /home/amish/applications/lancer/traefik/traefik.toml:/traefik.toml:ro
+      - /home/amish/applications/lancer/traefik/middlewares.toml:/middlewares.toml:ro
+      - /home/amish/db/traefik/:/traefik
+    extra_hosts:
+      - host.docker.internal:172.17.0.1
+    restart: 'unless-stopped'
+    labels:
+      # dashboard
+      traefik.enable: true
+      traefik.http.routers.traefik_dash.rule: Host(`traefik.lancer.sidequest.space`)
+      traefik.http.routers.traefik_dash.entrypoints: websecure
+      traefik.http.routers.traefik_dash.tls: true
+      traefik.http.routers.traefik_dash.tls.certResolver: myresolver
+      traefik.http.routers.traefik_dash.service: api@internal
+      traefik.http.routers.traefik_dash.middlewares: myauth@file
+
+networks:
+  proxy:

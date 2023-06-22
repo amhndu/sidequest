@@ -1,0 +1,26 @@
+[log]
+  level = "DEBUG"
+
+[providers]
+  [providers.docker]
+    exposedByDefault = false
+
+  # enable file provier to define common middleware
+  [providers.file]
+    filename = "/middlewares.toml"
+
+
+[api]
+  dashboard = true
+
+[certificatesResolvers.myresolver.acme]
+  storage = "/traefik/acme.json"
+  [certificatesResolvers.myresolver.acme.dnschallenge]
+    resolvers = ["1.1.1.1:53", "8.8.8.8:53"]
+    provider = "cloudflare"
+
+[entryPoints]
+  [entryPoints.web]
+    address = ":80"
+  [entryPoints.websecure]
+    address = ":443"
