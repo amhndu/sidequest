@@ -1,0 +1,21 @@
+:root {
+  /** colors */
+$colors$
+  
+  /** general */
+  --font-family: $font$;
+  --font-size: $fontSize$;
+  --display-image: $displayImage$;
+
+  /** surface */
+  --surface-maxWidth: $maxWidth$;
+  --surface-shadow: $shadow$;
+  --surface-borderRadius: $borderRadius$;
+
+  /** spacing */
+$spacing$
+
+  /** others */
+  --picture-size: 300px;
+  --group-count: $groupCount$;
+}
