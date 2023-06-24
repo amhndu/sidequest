@@ -1,14 +1,14 @@
 # js gitignores for startpage
 # dependencies
-/node_modules
-/.pnp
+node_modules
+.pnp
 .pnp.js
 
 # testing
 /coverage
 
 # production
-/build
+start/build
 
 # misc
 .DS_Store
