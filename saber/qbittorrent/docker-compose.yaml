@@ -1,0 +1,35 @@
+version: "3.9"
+services:
+  qbittorrent:
+    container_name: qbittorrent
+    image: cr.hotio.dev/hotio/qbittorrent
+    ports:
+      - "8081:8080"
+      - "8118:8118"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - UMASK=002
+      - TZ=Asia/Kolkata
+      - VPN_ENABLED=true
+      - VPN_LAN_NETWORK=192.168.0.0/24
+      - VPN_CONF=wg0saber
+      - PRIVOXY_ENABLED=false
+    volumes:
+      - /home/amish/db/qbit:/config
+      - /media/data/media/downloads:/data
+    privileged: true
+    cap_add:
+      - NET_ADMIN
+    dns:
+      - 1.1.1.1
+    sysctls:
+      - net.ipv4.conf.all.src_valid_mark=1
+      - net.ipv6.conf.all.disable_ipv6=1
+    restart: 'unless-stopped'
+    labels:
+      - 'traefik.enable=true'
+      - 'traefik.port=8080'
+      - 'traefik.http.routers.qbittorrent.rule=Host(`qbit.saber.sidequest.space`)'
+      - 'traefik.http.routers.qbittorrent.entryPoints=web'
+      - 'traefik.http.services.qbittorrent.loadbalancer.server.port=8080'
