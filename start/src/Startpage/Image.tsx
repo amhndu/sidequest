@@ -12,6 +12,12 @@ const Img = styled.img`
   object-fit: cover;
 `
 
+const Video = styled.video`
+  height: 320px;
+  max-width: 400px;
+  object-fit: cover;
+`
+
 export const Image = () => {
   const [{ img, displayImg }] = useGeneralSettings()
   const [src, setSrc] = useState(img)
@@ -20,5 +26,11 @@ export const Image = () => {
 
   if (!displayImg) return null
 
-  return <Img alt="" src={src} onError={() => setSrc(fallbackImage)} />
+  const srcUrl = new URL(src);
+
+  if (srcUrl.pathname.endsWith("mp4")) {
+    return <Video src={src} onError={() => setSrc(fallbackImage)} loop muted autoPlay/>
+  } else {
+    return <Img alt="" src={src} onError={() => setSrc(fallbackImage)} />
+  }
 }
