@@ -5,7 +5,10 @@ services:
     image: cr.hotio.dev/hotio/qbittorrent
     ports:
       - "8081:8080"
+      - "8989:8989"
       - "8118:8118"
+    networks:
+      - "traefik_proxy"
     environment:
       - PUID=1000
       - PGID=1000
@@ -13,6 +16,7 @@ services:
       - TZ=Asia/Kolkata
       - VPN_ENABLED=true
       - VPN_LAN_NETWORK=192.168.0.0/24
+      - VPN_ADDITIONAL_PORTS=8989/tcp
       - VPN_CONF=wg0saber
       - PRIVOXY_ENABLED=false
     volumes:
@@ -31,5 +35,12 @@ services:
       - 'traefik.enable=true'
       - 'traefik.port=8080'
       - 'traefik.http.routers.qbittorrent.rule=Host(`qbit.saber.sidequest.space`)'
-      - 'traefik.http.routers.qbittorrent.entryPoints=web'
+      - 'traefik.http.routers.qbittorrent.entryPoints=websecure'
+      - 'traefik.http.routers.qbittorrent.tls=true'
+      - 'traefik.http.routers.qbittorrent.tls.certResolver=myresolver'
       - 'traefik.http.services.qbittorrent.loadbalancer.server.port=8080'
+
+
+networks:
+  traefik_proxy:
+    external: true

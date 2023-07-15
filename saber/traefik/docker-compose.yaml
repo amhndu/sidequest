@@ -3,19 +3,28 @@ services:
   traefik:
     image: "traefik:v2.10"
     container_name: "traefik"
-    command:
-      - "--api.insecure=true"
-      - "--api.dashboard=true"
-      - "--providers.docker=true"
-      - "--providers.docker.exposedbydefault=false"
-      - "--entrypoints.web.address=:80"
-    network_mode: "host"
+    networks:
+      - "proxy"
+    environment:
+      - TRAEFIK_CERTIFICATESRESOLVERS_myresolver_ACME_EMAIL
+      - CF_DNS_API_TOKEN
     ports:
-      - "80:80"
-      - "8080:8080"
+      - "443:443"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
       - /home/amish/applications/saber/traefik/traefik.toml:/traefik.toml:ro
+      - /home/amish/db/traefik/:/traefik
     extra_hosts:
       - host.docker.internal:172.17.0.1
     restart: 'unless-stopped'
+    labels:
+      # dashboard
+      traefik.enable: true
+      traefik.http.routers.traefik_dash.rule: Host(`traefik.saber.sidequest.space`)
+      traefik.http.routers.traefik_dash.entrypoints: websecure
+      traefik.http.routers.traefik_dash.tls: true
+      traefik.http.routers.traefik_dash.tls.certResolver: myresolver
+      traefik.http.routers.traefik_dash.service: api@internal
+
+networks:
+  proxy:

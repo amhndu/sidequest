@@ -1,0 +1,23 @@
+version: "3.9"
+services:
+  sonarr:
+    image: cr.hotio.dev/hotio/sonarr
+    container_name: sonarr
+    restart: 'unless-stopped'
+    environment:
+      - "PUID=1000"
+      - "PGID=1000"
+      - "UMASK=002"
+    network_mode: container:qbittorrent
+    volumes:
+      - "$HOME/db/sonarr:/config"
+      - "/media/data/media:/media"
+    labels:
+      # Enable traefik
+      - 'traefik.enable=true'
+      - "traefik.port=8989"
+      - 'traefik.http.services.sonarr.loadbalancer.server.port=8989'
+      - 'traefik.http.routers.sonarr.rule=Host(`sonarr.saber.sidequest.space`)'
+      - 'traefik.http.routers.sonarr.entryPoints=websecure'
+      - 'traefik.http.routers.sonarr.tls=true'
+      - 'traefik.http.routers.sonarr.tls.certResolver=myresolver'
