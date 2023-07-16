@@ -24,6 +24,15 @@ export const General = () => {
   const setDispalyImg = (displayImg: boolean) =>
     setGeneralSettings({ ...generalSettings, displayImg })
 
+  const setBackgroundImg = (bgImg: string) =>
+    setGeneralSettings({ ...generalSettings, bgImg })
+
+  const setDispalyBackgroundImg = (displayBgImg: boolean) =>
+    setGeneralSettings({ ...generalSettings, displayBgImg })
+
+  const setBgImgBlur = (bgImgBlur: number) =>
+    setGeneralSettings({ ...generalSettings, bgImgBlur })
+
   const setFont = (font: string) =>
     setGeneralSettings({ ...generalSettings, font })
 
@@ -52,6 +61,25 @@ export const General = () => {
       />
       <br />
       <br />
+      <ImageInput label="Background Image" value={generalSettings.bgImg} onChange={setBackgroundImg} />
+      <br />
+      <br />
+      <Switch
+        checked={generalSettings.displayBgImg}
+        onChange={setDispalyBackgroundImg}
+        label="Display background image"
+      />
+      <br />
+      <br />
+      <Slider
+        label="Display blur"
+        value={generalSettings.bgImgBlur}
+        min={0}
+        max={32}
+        step={1}
+        onChange={setBgImgBlur}
+        getValueText={value => `${generalSettings.bgImgBlur}px blur`}
+      />
       <FlexRow>
         <TextInput
           label="Font"
