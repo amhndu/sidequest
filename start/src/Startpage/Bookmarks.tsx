@@ -60,7 +60,7 @@ const Group = ({ bookmarks, label, count }: GroupProps) => (
     <LinkGroup>
       {bookmarks.map(({ label, url, id }) => (
         <Link key={id}>
-          <a href={url}>{label}</a>
+          <a href={url} target="_parent">{label}</a>
         </Link>
       ))}
     </LinkGroup>
