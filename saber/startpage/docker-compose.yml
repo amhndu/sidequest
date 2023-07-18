@@ -15,10 +15,10 @@ services:
       # Enable traefik
       - 'traefik.enable=true'
       - "traefik.port=80"
-      - 'traefik.http.routers.glances.rule=Host(`startpage.saber.sidequest.space`)'
-      - 'traefik.http.routers.glances.entryPoints=websecure'
-      - 'traefik.http.routers.glances.tls=true'
-      - 'traefik.http.routers.glances.tls.certResolver=myresolver'
+      - 'traefik.http.routers.startpage.rule=Host(`startpage.saber.sidequest.space`)'
+      - 'traefik.http.routers.startpage.entryPoints=websecure'
+      - 'traefik.http.routers.startpage.tls=true'
+      - 'traefik.http.routers.startpage.tls.certResolver=myresolver'
 
 networks:
   traefik_proxy:
