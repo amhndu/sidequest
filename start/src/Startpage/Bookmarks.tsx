@@ -7,8 +7,7 @@ import { useFontSize } from "../Providers"
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
-  align-items: flex-end;
-  margin-top: auto;
+  align-items: flex-start;
 `
 const GroupWrapper = styled.div<Pick<GroupProps, "count">>`
   ${({ count }) => css`
@@ -22,7 +21,8 @@ const Title = styled.h2(({ theme: { color } }) => {
     color: ${color.secondary.fg};
     font-size: ${fontSize}rem;
     font-weight: 500;
-    margin: 0;
+    margin-top: 0;
+    margin-bottom: 5px;
   `
 })
 const LinkGroup = styled.ul`
@@ -37,7 +37,7 @@ const Link = styled.li`
   list-style: none;
   > a {
     display: block;
-    padding: 2px 0;
+    padding: 3px 0;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow-x: hidden;

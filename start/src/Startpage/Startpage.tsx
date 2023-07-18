@@ -23,8 +23,6 @@ export const Startpage = () => {
     <Surface>
       <Image />
       <Content>
-        <Headline />
-        <Searchbar />
         <Bookmarks />
       </Content>
     </Surface>
