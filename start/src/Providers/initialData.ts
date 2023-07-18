@@ -17,7 +17,16 @@ export const initialGeneralSettings = jsonData["yags-general"];
 
 export const initialTheme = jsonData["yags-theme"]
 
-export const initialSearchSettings = jsonData["yags-search"]
+export const initialSearchSettings = {
+  placeholder: "Search the web",
+  engine: "google" as SearchEngineName,
+  forwardingLookup: {
+    "/": "/",
+    deepl: "https://deepl.com/",
+    reddit: "https://reddit.com/",
+    maps: "https://maps.google.com/",
+  } as SearchOptions["forwardingLookup"],
+}
 
 export const initialSurfaceSettings = jsonData["yags-surface"];
 

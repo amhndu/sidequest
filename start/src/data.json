@@ -2,6 +2,9 @@
   "yags-general": {
     "img": "https://sidequest.space/NierAutomata.mp4",
     "title": "sidequest",
+    "bgImg": "",
+    "displayBgImg": false,
+    "bgImgBlur": 5,
     "displayImg": true,
     "font": "Quicksand",
     "enableFonts": false,
