@@ -1,0 +1,9 @@
+version: "3.9"
+services:
+  ytdlp:
+    build:
+      context: .
+    container_name: ytdlp
+    restart: 'unless-stopped'
+    volumes:
+      - /media/data/media/yt:/yt

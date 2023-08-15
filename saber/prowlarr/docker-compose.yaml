@@ -1,0 +1,24 @@
+version: "3.9"
+
+services:
+  prowlarr:
+    image: cr.hotio.dev/hotio/prowlarr
+    container_name: prowlarr
+    restart: 'unless-stopped'
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - UMASK=002
+      - TZ=Asia/Kolkata
+    network_mode: container:qbittorrent
+    volumes:
+      - /home/amish/db/prowlarr:/config
+    labels:
+      # Enable traefik
+      - 'traefik.enable=true'
+      - "traefik.port=9696"
+      - 'traefik.http.services.prowlarr.loadbalancer.server.port=9696'
+      - 'traefik.http.routers.prowlarr.rule=Host(`prowlarr.saber.sidequest.space`)'
+      - 'traefik.http.routers.prowlarr.entryPoints=websecure'
+      - 'traefik.http.routers.prowlarr.tls=true'
+      - 'traefik.http.routers.prowlarr.tls.certResolver=myresolver'

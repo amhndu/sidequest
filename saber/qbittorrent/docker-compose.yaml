@@ -5,7 +5,8 @@ services:
     image: cr.hotio.dev/hotio/qbittorrent
     ports:
       - "8081:8080"
-      - "8989:8989"
+      - "8989:8989" # sonarr
+      - "9696:9696" # prowlarr
       - "8118:8118"
     networks:
       - "traefik_proxy"
@@ -21,7 +22,7 @@ services:
       - PRIVOXY_ENABLED=false
     volumes:
       - /home/amish/db/qbit:/config
-      - /media/data/media/downloads:/data
+      - "/media/data/media:/media"
     privileged: true
     cap_add:
       - NET_ADMIN

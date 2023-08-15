@@ -6,11 +6,17 @@ services:
     privileged: true
     restart: 'unless-stopped'
     environment:
-      - GLANCES_OPT=-w
+      - GLANCES_OPT=-C /glances/conf/glances.conf -w
+      - TZ=Asia/Kolkata
     networks:
       - "traefik_proxy"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
+      # mount root to allow disk stats
+      - /:/rootfs:ro
+      # show host os stats
+      - /etc/os-release:/etc/os-release:ro
+      - /home/amish/applications/saber/glances/glances.conf:/glances/conf/glances.conf:ro
     pid: host
     labels:
       # Enable traefik
