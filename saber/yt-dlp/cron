@@ -2,5 +2,4 @@
 
 set -e
 
-#cd /yt && bash ./dl.sh >> /var/log/cron.log 2>&1
-cd /yt && bash ./echo.sh >> /var/log/cron.log 2>&1
+cd /yt && bash ./dl.sh > /proc/1/fd/1 2>/proc/1/fd/2

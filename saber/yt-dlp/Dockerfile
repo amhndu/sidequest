@@ -6,7 +6,6 @@ RUN apt-get update && \
 RUN add-apt-repository ppa:tomtomtom/yt-dlp && \
     apt-get -y install yt-dlp
 
-COPY cron /etc/cron.daily/cron
+COPY cron /etc/cron.weekly/cron
 
-RUN touch /var/log/cron.log
-CMD cron && tail -f /var/log/cron.log
+CMD cron -f

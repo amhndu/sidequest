@@ -1,0 +1,25 @@
+version: '3.5'
+
+services:
+  joplin:
+    image: florider89/joplin-server:2.11.1
+    container_name: joplin
+    volumes:
+      # needs to be chown 1001:1001 for joplin user
+      - /home/amish/db/joplin/:/storage/
+    restart: 'unless-stopped'
+    environment:
+      - SQLITE_DATABASE=/storage/db.sqlite
+      - STORAGE_DRIVER=Type=Filesystem; Path=/storage/notes
+      - APP_PORT=8080
+      - APP_BASE_URL=https://joplin.sidequest.space
+    networks:
+      - "cloudflared_tunnel"
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+
+networks:
+  cloudflared_tunnel:
+    external: true

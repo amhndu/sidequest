@@ -18,6 +18,11 @@ services:
     # Optional - may be necessary for docker healthcheck to pass if running in host network mode
     extra_hosts:
       - "host.docker.internal:host-gateway"
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: '2'
     labels:
       # Enable traefik
       - 'traefik.enable=true'
