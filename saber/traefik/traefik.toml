@@ -12,6 +12,11 @@
   storage = "/traefik/acme.json"
   [certificatesResolvers.myresolver.acme.dnschallenge]
     resolvers = ["1.1.1.1:53", "8.8.8.8:53"]
+    # HACK: can't get the usual workflow to work
+    # lego can't check the dns record on CF's authority server
+    delaybeforecheck = 60
+    disablepropagationcheck = true
+
     provider = "cloudflare"
 
 [entryPoints]

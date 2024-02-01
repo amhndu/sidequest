@@ -86,9 +86,9 @@
           "url": "https://www.youtube.com/"
         },
         {
-          "id": "zeeiQeIBl633lkGY",
-          "label": "jellyfin",
-          "url": "http://jellyfin.saber.sidequest.space/"
+          "id": "crunchryoll",
+          "label": "crunchyroll",
+          "url": "https://www.crunchyroll.com/"
         },
         {
           "id": "gf91dbzM2c391Lri",
@@ -123,9 +123,14 @@
       "label": "apps",
       "bookmarks": [
         {
+          "id": "filebrowser",
+          "label": "filebrowser",
+          "url": "https://filebrowser.saber.sidequest.space/"
+        },
+        {
           "id": "EOmyvcSGbqXdo8bt",
           "label": "joplin",
-          "url": "joplin.lancer.sidequest.space"
+          "url": "joplin.saber.sidequest.space"
         },
         {
           "id": "JMiHVWJPDjpyOAtH",
@@ -136,6 +141,11 @@
           "id": "6GL0xFzaU71B8PF6",
           "label": "sonarr",
           "url": "https://sonarr.saber.sidequest.space/"
+        },
+        {
+          "id": "prowlarr",
+          "label": "prowlarr",
+          "url": "https://prowlarr.saber.sidequest.space/"
         },
         {
           "id": "GTPSVbqgpEZrcrBw",
@@ -157,16 +167,6 @@
           "id": "DaIxbYiEUn4I2osB",
           "label": "glances (saber)",
           "url": "https://glances.saber.sidequest.space/"
-        },
-        {
-          "id": "brOGesHqw9yVqVhw",
-          "label": "traefik (lancer)",
-          "url": "traefik.lancer.sidequest.space/"
-        },
-        {
-          "id": "bq927OU0iYCEt6NV",
-          "label": "glancers (lancer)",
-          "url": "http://glances.lancer.sidequest.space/"
         }
       ]
     }

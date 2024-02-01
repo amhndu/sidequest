@@ -39,16 +39,11 @@ const HeaderButton = styled(Listbox.Button)<Pick<SelectHeaderProps, "open">>`
 `
 
 const HeaderText = styled.span(
-  ({ theme: { color }, placeholder }) => css`
+  ({ theme: { color } }) => css`
     flex: 1;
     text-align: left;
     overflow-x: hidden;
     text-overflow: ellipsis;
-
-    ${Boolean(placeholder) &&
-    css`
-      color: ${color.fg.shade};
-    `}
   `
 )
 
