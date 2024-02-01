@@ -1,0 +1,22 @@
+version: '3.5'
+
+services:
+  foundry:
+    image: felddy/foundryvtt:release
+    container_name: foundry
+    volumes:
+      - /home/amish/db/foundry/:/data
+      - /media/data/cache/foundry/:/cache
+    restart: 'unless-stopped'
+    environment:
+      - CONTAINER_CACHE=/cache
+      - FOUNDRY_USERNAME
+      - FOUNDRY_PASSWORD
+      - FOUNDRY_LICENSE_KEY
+      - FOUNDRY_ADMIN_KEY
+    networks:
+      - "cloudflared_tunnel"
+
+networks:
+  cloudflared_tunnel:
+    external: true
