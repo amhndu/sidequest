@@ -5,8 +5,6 @@ services:
     image: cr.hotio.dev/hotio/qbittorrent
     ports:
       - "8081:8080"
-      - "8989:8989" # sonarr
-      - "9696:9696" # prowlarr
       - "8118:8118"
     networks:
       - "traefik_proxy"
@@ -15,11 +13,11 @@ services:
       - PGID=1000
       - UMASK=002
       - TZ=Asia/Kolkata
-      - VPN_ENABLED=true
-      - VPN_LAN_NETWORK=192.168.0.0/24
-      - VPN_ADDITIONAL_PORTS=8989/tcp
-      - VPN_CONF=wg0saber
-      - PRIVOXY_ENABLED=false
+      # - VPN_ENABLED=false
+      # - VPN_LAN_NETWORK=192.168.0.0/24
+      # - VPN_ADDITIONAL_PORTS=8989/tcp
+      # - VPN_CONF=wg0saber
+      # - PRIVOXY_ENABLED=false
     volumes:
       - /home/amish/db/qbit:/config
       - "/media/data/media:/media"

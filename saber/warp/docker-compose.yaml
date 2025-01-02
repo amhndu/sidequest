@@ -1,0 +1,26 @@
+version: "3.9"
+services:
+  wgcf:
+    container_name: wgcf
+    image: neilpang/wgcf-docker:latest
+    ports:
+      - "8989:8989" # sonarr
+      - "9696:9696" # prowlarr
+    networks:
+      - "traefik_proxy"
+    volumes:
+      - ./wgcf:/wgcf
+      - /lib/modules:/lib/modules
+    privileged: true
+    sysctls:
+      net.ipv6.conf.all.disable_ipv6: 0
+    cap_add:
+      - NET_ADMIN
+    command: "-4"
+    dns:
+      - 1.1.1.1
+    restart: 'unless-stopped'
+
+networks:
+  traefik_proxy:
+    external: true

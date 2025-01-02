@@ -2,10 +2,10 @@ version: '3.5'
 
 services:
   foundry:
-    image: felddy/foundryvtt:release
+    image: felddy/foundryvtt:12
     container_name: foundry
     volumes:
-      - /home/amish/db/foundry/:/data
+      - /media/data/foundry/:/data
       - /media/data/cache/foundry/:/cache
     restart: 'unless-stopped'
     environment:

@@ -10,7 +10,7 @@ services:
       - PGID=1000
       - UMASK=002
       - TZ=Asia/Kolkata
-    network_mode: container:qbittorrent
+    network_mode: container:wgcf
     volumes:
       - /home/amish/db/prowlarr:/config
     deploy:
